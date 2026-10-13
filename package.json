@@ -1,0 +1,15 @@
+{
+  "name": "seguros-elroble-ia-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+
+  "scripts": {
+    "dev:backend": "npm --prefix apps/backend-api run start:dev",
+    "dev:frontend": "npm --prefix apps/frontend-web run dev",
+    "dev:ai": ".\\apps\\ai-service\\venv\\Scripts\\python.exe -m uvicorn app.main:app --app-dir apps/ai-service --reload --reload-dir apps/ai-service --port 8000"
+  }
+ 
+}

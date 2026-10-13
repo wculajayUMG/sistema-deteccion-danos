@@ -1,0 +1,5 @@
+export enum TipoGolpe {
+  GOLPE_PEQUENO = 'GOLPE_PEQUEÑO',
+  GOLPE_MEDIANO = 'GOLPE_MEDIANO',
+  GOLPE_GRANDE = 'GOLPE_GRANDE',
+}

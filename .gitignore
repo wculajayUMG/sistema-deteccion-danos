@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Python
+apps/ai-service/venv/
+apps/ai-service/__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Modelos ML (archivos grandes — subir por separado)
+*.pt
+*.pth
+*.onnx
+*.weights
+
+# Build outputs
+apps/backend-api/dist/
+apps/frontend-web/.next/
+apps/frontend-web/out/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,12 @@
+# Replace the dataset template with the Roboflow YOLOv8 export.
+path: ./dataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 4
+names:
+  - golpe_pequeno
+  - golpe_mediano
+  - golpe_grande
+  - cambio_pieza
