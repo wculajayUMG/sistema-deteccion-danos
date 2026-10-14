@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir \
     torch==2.3.0 \
     torchvision==0.18.0 \
     --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir -r apps/ai-service/requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir gdown
 
 COPY apps/ai-service/. .
