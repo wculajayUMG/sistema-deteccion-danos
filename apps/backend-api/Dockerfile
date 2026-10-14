@@ -2,11 +2,11 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Archivos raíz del monorepo
-COPY package*.json ./
+COPY package.json package-lock.json ./
 COPY turbo.json* ./
 
 # Package del workspace
-COPY apps/backend-api/package*.json ./apps/backend-api/
+COPY apps/backend-api/package.json apps/backend-api/package-lock.json ./apps/backend-api/
 
 # Instalar todas las dependencias del monorepo
 RUN npm ci

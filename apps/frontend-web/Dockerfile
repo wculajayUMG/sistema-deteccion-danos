@@ -2,11 +2,11 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Archivos raíz del monorepo
-COPY package*.json ./
+COPY package.json package-lock.json ./
 COPY turbo.json* ./
 
 # Archivos de configuración del workspace
-COPY apps/frontend-web/package*.json ./apps/frontend-web/
+COPY apps/frontend-web/package.json apps/frontend-web/package-lock.json ./apps/frontend-web/
 COPY apps/frontend-web/next.config* ./apps/frontend-web/
 
 # Instalar todas las dependencias del monorepo
