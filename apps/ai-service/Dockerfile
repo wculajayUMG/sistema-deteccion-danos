@@ -5,13 +5,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY apps/ai-service/requirements.txt .
 RUN pip install --no-cache-dir torch==2.3.0 torchvision==0.18.0 \
     --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir gdown
 
-COPY . .
+COPY apps/ai-service/. .
 RUN mkdir -p weights && \
     gdown --id 1jwX1ZqPmVX2MM0QE6UzT5P0Uipvbp6Sc -O weights/best.pt
 
