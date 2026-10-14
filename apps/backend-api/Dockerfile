@@ -9,7 +9,7 @@ COPY turbo.json* ./
 COPY apps/backend-api/package.json apps/backend-api/package-lock.json ./apps/backend-api/
 
 # Instalar todas las dependencias del monorepo
-RUN npm ci
+RUN npm install
 
 # Copiar fuente del workspace
 COPY apps/backend-api ./apps/backend-api
