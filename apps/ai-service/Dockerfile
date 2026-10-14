@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir gdown
 
 COPY apps/ai-service/. .
 RUN mkdir -p weights && \
-    gdown --id 1jwX1ZqPmVX2MM0QE6UzT5P0Uipvbp6Sc -O weights/best.pt
+    gdown "https://drive.google.com/uc?id=1jwX1ZqPmVX2MM0QE6UzT5P0Uipvbp6Sc" -O weights/best.pt
 
 EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
