@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # Archivos raíz del monorepo
@@ -18,7 +18,7 @@ COPY apps/backend-api ./apps/backend-api
 WORKDIR /app/apps/backend-api
 RUN npm run build
 
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 

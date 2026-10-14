@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # Archivos raíz del monorepo
@@ -10,7 +10,7 @@ COPY apps/frontend-web/package.json apps/frontend-web/package-lock.json ./apps/f
 COPY apps/frontend-web/next.config* ./apps/frontend-web/
 
 # Instalar todas las dependencias del monorepo
-RUN npm ci
+RUN npm install
 
 # Copiar fuente del workspace
 COPY apps/frontend-web ./apps/frontend-web
@@ -19,7 +19,7 @@ COPY apps/frontend-web ./apps/frontend-web
 WORKDIR /app/apps/frontend-web
 RUN npm run build
 
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
