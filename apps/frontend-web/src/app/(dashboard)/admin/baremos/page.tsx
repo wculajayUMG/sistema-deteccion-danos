@@ -142,9 +142,10 @@ export default function BaremosPage() {
 
   async function guardarBaremo() {
     await withLoading(async () => {
-      const payload = { ...form, costoManoObraGtq: parseFloat(form.costoManoObraGtq) || 0 };
+      const { estado, ...rest } = form;
+      const payload = { ...rest, costoManoObraGtq: parseFloat(form.costoManoObraGtq) || 0 };
       if (editando) {
-        await apiFetch(`/api/v1/admin/baremos/${editando.idBaremo}`, { method: 'PATCH', body: JSON.stringify(payload) });
+        await apiFetch(`/api/v1/admin/baremos/${editando.idBaremo}`, { method: 'PATCH', body: JSON.stringify({ ...payload, estado }) });
       } else {
         await apiFetch('/api/v1/admin/baremos', { method: 'POST', body: JSON.stringify(payload) });
       }

@@ -137,10 +137,11 @@ export default function RepuestosPage() {
   };
 
   const guardarRepuesto = () => withLoading(async () => {
+    const { estado: _estado, ...payload } = form;
     if (editando) {
-      await apiFetch(`${BASE}/api/v1/admin/repuestos/${editando.idRepuesto}`, { method: 'PATCH', body: JSON.stringify(form) });
+      await apiFetch(`${BASE}/api/v1/admin/repuestos/${editando.idRepuesto}`, { method: 'PATCH', body: JSON.stringify(payload) });
     } else {
-      await apiFetch(`${BASE}/api/v1/admin/repuestos`, { method: 'POST', body: JSON.stringify(form) });
+      await apiFetch(`${BASE}/api/v1/admin/repuestos`, { method: 'POST', body: JSON.stringify(payload) });
     }
     setModalOpen(false);
     await cargarRepuestos();

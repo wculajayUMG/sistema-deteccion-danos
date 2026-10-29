@@ -260,6 +260,7 @@ export class CatalogosService {
     if (dto.fechaVigencia !== undefined) {
       repuesto.fechaVigencia = new Date(dto.fechaVigencia);
     }
+    if (dto.estado !== undefined) repuesto.estado = dto.estado;
     if (repuesto.modelo.marca.idMarca !== repuesto.marca.idMarca) {
       throw new ConflictException('El modelo no pertenece a la marca indicada');
     }

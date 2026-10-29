@@ -93,4 +93,8 @@ export class CreateRepuestoDto {
   fechaVigencia: string;
 }
 
-export class UpdateRepuestoDto extends PartialType(CreateRepuestoDto) {}
+export class UpdateRepuestoDto extends PartialType(CreateRepuestoDto) {
+  @IsOptional()
+  @IsBoolean()
+  estado?: boolean;
+}

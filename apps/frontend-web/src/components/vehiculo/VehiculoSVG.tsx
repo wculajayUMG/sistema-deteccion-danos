@@ -229,7 +229,7 @@ export default function VehiculoSVG({ seleccionadas, onToggle, onZonasChange }: 
             fontFamily="system-ui"
             pointerEvents="none"
           >
-            ▲ FRONTAL
+            ▲ PARTE TRASERA DEL VEHÍCULO
           </text>
         </svg>
       </div>

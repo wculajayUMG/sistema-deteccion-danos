@@ -261,7 +261,7 @@ export default function PresupuestoPage() {
       await apiClient.patch(`/api/v1/presupuestos/${presupuesto.idPresupuesto}/lineas/${idLinea}`, {
         costoRepuestoGtq: repuesto,
         costoManoObraGtq: manoObra,
-        justificacion,
+        descripcion: justificacion,
       });
       await refetch();
     },
