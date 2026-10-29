@@ -54,11 +54,12 @@ export class UsuariosAdminController {
   }
 
   @Post(':id/reset-password')
-  resetPassword(
+  async resetPassword(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ResetPasswordDto,
   ) {
-    return this.usuarios.resetPassword(id, dto.password);
+    await this.usuarios.resetPassword(id, dto.password);
+    return { message: 'Contraseña actualizada correctamente' };
   }
 
   @Patch(':id/bloquear')

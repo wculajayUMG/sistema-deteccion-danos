@@ -1,5 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import {
+  IsBoolean,
   IsEnum,
   IsDateString,
   IsInt,
@@ -52,7 +53,11 @@ export class CreateBaremoDto {
   fechaVigencia: string;
 }
 
-export class UpdateBaremoDto extends PartialType(CreateBaremoDto) {}
+export class UpdateBaremoDto extends PartialType(CreateBaremoDto) {
+  @IsOptional()
+  @IsBoolean()
+  estado?: boolean;
+}
 
 export class CreateRepuestoDto {
   @IsInt()

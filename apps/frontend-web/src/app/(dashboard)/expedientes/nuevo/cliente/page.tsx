@@ -172,7 +172,7 @@ export default function ClientePage() {
               <input readOnly value="Se generará automáticamente" className={cn(inputClass, 'cursor-not-allowed bg-gray-50 text-gray-400')} />
             </Field>
             <Field label="Número de Reclamo" required error={errors.numeroPoliza?.message}>
-              <input {...register('numeroPoliza')} placeholder="POL-2026-001" className={errors.numeroPoliza ? errorInputClass : inputClass} />
+              <input {...register('numeroPoliza')} placeholder="Reclamo #" className={errors.numeroPoliza ? errorInputClass : inputClass} />
             </Field>
             <Field label="Fecha del Siniestro" required error={errors.fechaSiniestro?.message}>
               <input {...register('fechaSiniestro')} type="date" max={today} className={errors.fechaSiniestro ? errorInputClass : inputClass} />

@@ -92,7 +92,7 @@ export default function BaremosPage() {
   const [filtroEstado, setFiltroEstado] = useState('');
   const [busqueda, setBusqueda] = useState('');
   const [form, setForm] = useState({
-    idPiezaCatalogo: 0, tipoGolpe: 'GOLPE_PEQUEÑO', costoManoObraGtq: 0, fechaVigencia: '', estado: true,
+    idPiezaCatalogo: 0, tipoGolpe: 'GOLPE_PEQUEÑO', costoManoObraGtq: '0', fechaVigencia: '', estado: true,
   });
   const [rol, setRol] = useState('');
   const esSoloLectura = rol === 'PERITO';
@@ -131,21 +131,22 @@ export default function BaremosPage() {
 
   const openAdd = () => {
     setEditando(null);
-    setForm({ idPiezaCatalogo: piezas[0]?.idPiezaCatalogo ?? 0, tipoGolpe: 'GOLPE_PEQUEÑO', costoManoObraGtq: 0, fechaVigencia: new Date().toISOString().split('T')[0], estado: true });
+    setForm({ idPiezaCatalogo: piezas[0]?.idPiezaCatalogo ?? 0, tipoGolpe: 'GOLPE_PEQUEÑO', costoManoObraGtq: '0', fechaVigencia: new Date().toISOString().split('T')[0], estado: true });
     setModalOpen(true);
   };
   const openEdit = (b: Baremo) => {
     setEditando(b);
-    setForm({ idPiezaCatalogo: b.catalogoPieza.idPiezaCatalogo, tipoGolpe: b.tipoGolpe, costoManoObraGtq: Number(b.costoManoObraGtq), fechaVigencia: b.fechaVigencia.split('T')[0], estado: b.estado });
+    setForm({ idPiezaCatalogo: b.catalogoPieza.idPiezaCatalogo, tipoGolpe: b.tipoGolpe, costoManoObraGtq: String(Number(b.costoManoObraGtq)), fechaVigencia: b.fechaVigencia.split('T')[0], estado: b.estado });
     setModalOpen(true);
   };
 
   async function guardarBaremo() {
     await withLoading(async () => {
+      const payload = { ...form, costoManoObraGtq: parseFloat(form.costoManoObraGtq) || 0 };
       if (editando) {
-        await apiFetch(`/api/v1/admin/baremos/${editando.idBaremo}`, { method: 'PATCH', body: JSON.stringify(form) });
+        await apiFetch(`/api/v1/admin/baremos/${editando.idBaremo}`, { method: 'PATCH', body: JSON.stringify(payload) });
       } else {
-        await apiFetch('/api/v1/admin/baremos', { method: 'POST', body: JSON.stringify(form) });
+        await apiFetch('/api/v1/admin/baremos', { method: 'POST', body: JSON.stringify(payload) });
       }
       setModalOpen(false);
       setEditando(null);
@@ -419,7 +420,7 @@ export default function BaremosPage() {
             <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide">Costo Mano de Obra (GTQ) *</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-mono">Q</span>
-              <input type="number" min={0} step={0.01} value={form.costoManoObraGtq} onChange={(e) => setForm((f) => ({ ...f, costoManoObraGtq: Number(e.target.value) }))} className="w-full pl-7 pr-3 py-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-[#00B5E2]" />
+              <input type="number" min={0} step={0.01} value={form.costoManoObraGtq} onChange={(e) => setForm((f) => ({ ...f, costoManoObraGtq: e.target.value }))} className="w-full pl-7 pr-3 py-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-[#00B5E2]" />
             </div>
             <p className="text-[11px] text-slate-400 mt-1">Monto neto sin IVA de mano de obra sugerida.</p>
           </div>

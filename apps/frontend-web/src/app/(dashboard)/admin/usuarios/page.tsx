@@ -218,7 +218,7 @@ export default function UsuariosPage() {
     await withLoading(async () => {
       await apiFetch(`/api/v1/admin/usuarios/${editando.idUsuario}/reset-password`, {
         method: 'POST',
-        body: JSON.stringify({ nuevaContrasena: formPwd.password }),
+        body: JSON.stringify({ password: formPwd.password }),
       });
       setModalPwd(false);
       setFormPwd({ password: '', confirmar: '' });
@@ -249,7 +249,7 @@ export default function UsuariosPage() {
     await withLoading(async () => {
       await apiFetch(`/api/v1/admin/usuarios/${consolaPwdUsuario}/reset-password`, {
         method: 'POST',
-        body: JSON.stringify({ nuevaContrasena: consolaPwdVal }),
+        body: JSON.stringify({ password: consolaPwdVal }),
       });
       alert(`✓ Contraseña temporal enviada a ${u?.correo ?? 'usuario'}.`);
       setConsolaPwdUsuario('');
@@ -625,7 +625,7 @@ export default function UsuariosPage() {
           {!editando && (
             <div>
               <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide">Contraseña Temporal *</label>
-              <input type="password" value={form.password} onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))} placeholder="Mínimo 8 caracteres" className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-[#00B5E2]" />
+              <input type="password" value={form.password} onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))} placeholder="Mínimo 12 caracteres" className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-[#00B5E2]" />
             </div>
           )}
           <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-700 flex items-start gap-2">
@@ -646,7 +646,7 @@ export default function UsuariosPage() {
         <div className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide">Nueva Contraseña *</label>
-            <input type="password" value={formPwd.password} onChange={(e) => setFormPwd((f) => ({ ...f, password: e.target.value }))} placeholder="Mínimo 8 caracteres" className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-[#00B5E2]" />
+            <input type="password" value={formPwd.password} onChange={(e) => setFormPwd((f) => ({ ...f, password: e.target.value }))} placeholder="Mínimo 12 caracteres" className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg outline-none focus:border-[#00B5E2]" />
           </div>
           <div>
             <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wide">Confirmar Contraseña *</label>
